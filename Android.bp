@@ -239,6 +239,13 @@ cc_library_shared {
 }
 
 cc_library_shared {
+name: "android.hardware.sensors@1.0-convert-shared",
+    shared_libs: ["libhidlbase"],
+    whole_static_libs: ["android.hardware.sensors@1.0-convert"],
+    vendor_available: true,
+}
+
+cc_library_shared {
     name: "libavservices_minijail_vendor",
     shared_libs: ["libavservices_minijail"],
     vendor: true,
@@ -521,6 +528,24 @@ cc_prebuilt_library_shared {
         },
         android_arm64: {
             srcs: ["vndk/v33/arm64/libstagefright_foundation-v33.so"],
+        },
+    },
+    compile_multilib: "both",
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libutils-v32",
+    vendor: true,
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm: {
+            srcs: ["vndk/v32/arm/libutils-v32.so"],
+        },
+        android_arm64: {
+            srcs: ["vndk/v32/arm64/libutils-v32.so"],
         },
     },
     compile_multilib: "both",
